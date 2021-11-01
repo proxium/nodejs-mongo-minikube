@@ -62,11 +62,11 @@ Add the 3 lines marked below:
 ```
 make dev
 ```
-3. Run the Makefile script like the following (to create a prod cluster):
+3i. Run the Makefile script like the following (to create a prod cluster - always after `make dev` to create the local docker registry):
 ```
 make prod
 ```
-4. Run the Makefile script like the following (to create a dev and prod clusters at once):
+3ii. Run the Makefile script like the following (to create a dev and prod clusters at once):
 ```
 make all
 ```
