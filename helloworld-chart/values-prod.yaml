@@ -1,0 +1,25 @@
+replicaCount: 1
+clusterDomain: local.prod
+image:
+  repository: local.dev:30007/nodejs-hello
+  tag: "1.1"
+  imagePullPolicy: Always
+
+service:
+  type: NodePort
+
+mongodb:
+  fullnameOverride: mongodb
+  initdbScripts:
+    init_script.js: |
+      use helloprod
+      db.createCollection("hellocollections")
+      db.hellocollections.insertOne( {
+        data: "Hello world - prod"
+      });
+  port: 27017
+  service.type: NodePort
+  persistence:
+    enabled: false
+  auth:
+    enabled: true

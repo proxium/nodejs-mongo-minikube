@@ -1,0 +1,11 @@
+apiVersion: v2
+name: helloworld-chart
+description: Running a Node.js app with Docker, Kubernetes and Minikube
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+icon: https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg
+dependencies:
+  - name: mongodb
+    version: 10.28.x
+    repository: https://charts.bitnami.com/bitnami

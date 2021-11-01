@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  MONGO_HOSTNAME: "mongodb.default.svc.{{ .Values.clusterDomain }}"
+  MONGO_PORT: "{{ .Values.mongodb.port }}"
+  MONGO_DB: "{{ .Values.mongodb.auth.database }}"
+

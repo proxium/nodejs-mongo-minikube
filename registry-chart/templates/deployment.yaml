@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: private-registry
+  name: private-registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: private-registry
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: private-registry
+    spec:
+      containers:
+      - image: registry:2
+        name: registry
+        ports:
+          - containerPort: 5000
+        resources: {}
+status: {}

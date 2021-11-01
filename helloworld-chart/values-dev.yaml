@@ -1,0 +1,26 @@
+replicaCount: 1
+clusterDomain: local.dev
+image:
+  repository: local.dev:30007/nodejs-hello
+  tag: "1.1"
+  imagePullPolicy: Always
+
+service:
+  type: NodePort
+
+mongodb:
+  fullnameOverride: mongodb
+#  initdbScriptsConfigMap: init-mongo
+  initdbScripts:
+    init_script.js: |
+      use hellodev
+      db.createCollection("hellocollections")
+      db.hellocollections.insertOne( {
+        data: "Hello world - dev"
+      });
+  port: 27017
+  externalAccess.service.type: NodePort
+  persistence:
+    enabled: false
+  auth:
+    enabled: true
