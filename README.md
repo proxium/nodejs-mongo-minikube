@@ -4,9 +4,12 @@
 
 This is a hello-world simple Node.JS app that uses Mongoose to connect to MongoDB.
 The database connection was made following the 12FA approach (no hard-coded values for the database connection) and is done in db.js
+
 server.js is including db.js and will shows:
   - Hello world - dev (when deploying dev-cluster, visible under http://nodejs-hello.local.dev)
   - Hello world - prod (when deploying prod-cluster, visible under http://nodejs-hello.local.prod)
+
+To avoid the `/etc/hosts` pollution problem, we installed ingress-dns addon and created per cluster a specific file (for macOS) `/etc/resolver/<our-file>` to magically access all local services.
 
 ## Set up your tools
 
@@ -23,7 +26,7 @@ brew install kubernetes-cli
 # Minikube => Local Kubernetes
 brew install minikube
 
-# install helm
+# Helm => Chart management
 brew install helm
 
 ```
@@ -75,4 +78,4 @@ The deployment of helloworld-chart can fail with the following message:
 Release "helloworld-chart" does not exist. Installing it now.
 Error: Internal error occurred: failed calling webhook "validate.nginx.ingress.kubernetes.io": Post "https://ingress-nginx-controller-admission.ingress-nginx.svc:443/networking/v1/ingresses?timeout=10s": context deadline exceeded
 ```
-
+There is a chance that the ingress controller was unavailable for any reason while we are trying to apply the ingress object. I re-executed the same command again and then it woas working !
